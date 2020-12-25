@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 import java.net.URL;
 
 import com.coffeemachine.models.Client;
+import com.coffeemachine.models.Machine;
 import com.coffeemachine.models.Product;
 import com.coffeemachine.models.Technician;
 
@@ -162,6 +163,27 @@ public class AppController implements Initializable{
 	}
 	
 	
+	
+	//TableView Machine
+		@FXML
+		private TableView<Machine> machineTable;   
+		
+		@FXML
+		private TableColumn<Machine,Long> machineID;
+
+		@FXML
+		private TableColumn<Machine, Boolean> isTurnedOn;
+
+		@FXML
+		private TableColumn<Machine, Double> sumChange;
+
+		
+		ObservableList<Machine> listMachine = FXCollections.observableArrayList(
+				new Machine(32196577)
+		);
+		
+		
+	
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		
@@ -186,5 +208,11 @@ public class AppController implements Initializable{
 		idRef.setCellValueFactory(new PropertyValueFactory<Technician, String>("idRef"));
 		accessCode.setCellValueFactory(new PropertyValueFactory<Technician, String>("accessCode"));
 		technicianTable.setItems(listTechnician);
+		
+		//Machines
+		machineID.setCellValueFactory(new PropertyValueFactory<Machine, Long>("id"));
+		isTurnedOn.setCellValueFactory(new PropertyValueFactory<Machine, Boolean>("isTurnedOn"));
+		sumChange.setCellValueFactory(new PropertyValueFactory<Machine, Double>("sumChange"));
+		machineTable.setItems(listMachine);
 	}
 }
